@@ -194,7 +194,7 @@ export class TenderForm extends Component {
             </select>
           </div>
           <button type="submit" className="btn btn-primary">
-            Next
+            Submit
           </button>
         </form>
       </div>
