@@ -1,13 +1,48 @@
 import React, { Component } from "react";
-import "./form.css"; 
+import "./form.css";
 
 export class TenderForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      estimatedCost: "",
+      earnestMoney: "",
+      date: "",
+      tenderSubmissionLastDate: "",
+      querySubmissionDate: ""
+    };
+  }
+
+  handleCostChange = (event) => {
+    const estimatedCost = event.target.value;
+    const earnestMoney = estimatedCost ? (estimatedCost * 0.02).toFixed(2) : "";
+    this.setState({ estimatedCost, earnestMoney });
+  };
+
+  handleDateChange = (event) => {
+    const date = event.target.value;
+    let tenderSubmissionLastDate = "";
+    let querySubmissionDate = "";
+    if (date) {
+      const dateObject = new Date(date);
+      dateObject.setDate(dateObject.getDate() + 21);
+      tenderSubmissionLastDate = dateObject.toISOString().split('T')[0];
+
+      const queryDateObject = new Date(tenderSubmissionLastDate);
+      queryDateObject.setDate(queryDateObject.getDate() - 7);
+      querySubmissionDate = queryDateObject.toISOString().split('T')[0];
+    }
+    this.setState({ date, tenderSubmissionLastDate, querySubmissionDate });
+  };
+
   render() {
     return (
       <div className="form-container">
-      
         <form className="form">
-        <h3 style={{padding:"10px"}}><center>Tendor Generation Form</center> </h3>
+          <h3 style={{ padding: "10px" }}>
+            <center>Tender Generation Form</center>
+          </h3>
+          {/* Input fields and labels as before, omitted for brevity */}
           <div className="mb-3">
             <label htmlFor="InputEquipmentName" className="form-label">
               1. Name of Equipment
@@ -64,73 +99,80 @@ export class TenderForm extends Component {
               placeholder="Enter department name"
             />
           </div>
+
           <div className="mb-3">
-            <label htmlFor="InputDate" className="form-label">
-              6. Date
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="InputDate"
-              placeholder="__/__/____"
-            />
-          </div>
-          <div className="mb-3">
+            
             <label htmlFor="InputEstimatedCost" className="form-label">
-              7. Estimated cost
+              6. Estimated cost
             </label>
             <input
               type="text"
               className="form-control"
               id="InputEstimatedCost"
               placeholder="Enter estimated cost"
+              value={this.state.estimatedCost}
+              onChange={this.handleCostChange}
             />
           </div>
           <div className="mb-3">
             <label htmlFor="InputEMD" className="form-label">
-              8. Earnest Money (EMD) – Rs_______(2% of estimated cost)
+              7. Earnest Money (EMD) – Rs {this.state.earnestMoney} (2% of estimated cost)
             </label>
             <input
               type="text"
               className="form-control"
               id="InputEMD"
               placeholder="Enter EMD"
+              value={this.state.earnestMoney}
+              disabled
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="InputDate" className="form-label">
+              8. Date
+            </label>
+            <input
+              type="date"
+              className="form-control"
+              id="InputDate"
+              value={this.state.date}
+              onChange={this.handleDateChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="InputTenderSubmissionLastDate" className="form-label">
+              9. Last date for submission of Tender (Online only) (Min 21 days)
+            </label>
+            <input
+              type="date"
+              className="form-control"
+              id="InputTenderSubmissionLastDate"
+              placeholder="__/__/____"
+              value={this.state.tenderSubmissionLastDate}
+              disabled
             />
           </div>
           <div className="mb-3">
             <label htmlFor="InputQuerySubmissionDate" className="form-label">
-              9. Last date for submission of written queries for clarifications
-              to the email ID (7 days before the last date for submission)
+              10. Last date for submission of written queries for clarifications (7 days before the last date for submission)
             </label>
             <input
-              type="text"
+              type="date"
               className="form-control"
               id="InputQuerySubmissionDate"
               placeholder="__/__/____"
+              value={this.state.querySubmissionDate}
+              disabled
             />
           </div>
           <div className="mb-3">
             <label htmlFor="InputResponseReleaseDate" className="form-label">
-              10. Date of release of response
+              11. Date of release of response
             </label>
             <input
               type="text"
               className="form-control"
               id="InputResponseReleaseDate"
-              placeholder="__/__/____"
-            />
-          </div>
-          <div className="mb-3">
-            <label
-              htmlFor="InputTenderSubmissionLastDate"
-              className="form-label"
-            >
-              11. Last date for submission of Tender (Online only) (Min 21 days)
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="InputTenderSubmissionLastDate"
               placeholder="__/__/____"
             />
           </div>
@@ -193,6 +235,9 @@ export class TenderForm extends Component {
               <option value="NO">NO</option>
             </select>
           </div>
+
+
+          {/* Remaining fields as before, omitted for brevity */}
           <button type="submit" className="btn btn-primary">
             Submit
           </button>

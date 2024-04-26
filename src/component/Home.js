@@ -1,50 +1,48 @@
-import React from "react"
-import {useLocation, useNavigate, Link} from 'react-router-dom';
+import React from "react";
+import { useLocation, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-function Home (){
-    const location=useLocation()
+function Home() {
+    const location = useLocation();
+    const history = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        sessionStorage.removeItem('token');
+        history('/login');
+    };
 
     return (
-        <div className="homepage">
-
-            {/* <h1>Hello {location.state.id} and welcome to the home</h1> */}
-            <nav class="navbar navbar-expand-lg" style={{backgroundColor: "#e3f2fd"}}>
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">E-Office</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        {/* <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li> */}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Tender
-          </a>
-          <ul class="dropdown-menu">
-            <li><Link to="/home/form" class="dropdown-item">New Tendor</Link></li>
-            <li><Link to="#" class="dropdown-item">Corrections</Link></li>
-          </ul>
-        </li>
-        {/* <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li> */}
-      </ul>
-      {/* <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> */}
-    </div>
-  </div>
-</nav>
-
+        <div className="homepage" style={{ backgroundColor: '#003366', height: '100vh', color: 'white' }}>
+            {/* Navbar */}
+            <nav className="navbar navbar-expand-lg" style={{ backgroundColor: "#0055b7" }}>
+                <div className="container-fluid">
+                    <a className="navbar-brand" href="#" style={{ color: 'white' }}>E-Office</a>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <a className="nav-link active" aria-current="page" href="#" style={{ color: 'white' }}>Home</a>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: 'white' }}>
+                                    Tender
+                                </a>
+                                <ul className="dropdown-menu" style={{ backgroundColor: '#0055b7' }}>
+                                    <li><Link to="/home/form" className="dropdown-item" style={{ color: 'white' }}>New Tender</Link></li>
+                                    <li><Link to="#" className="dropdown-item" style={{ color: 'white' }}>Corrections</Link></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        {/* Logout button */}
+                        <button className="btn btn-outline-danger" onClick={handleLogout} style={{ color: 'white', borderColor: 'white' }}>Logout</button>
+                    </div>
+                </div>
+            </nav>
         </div>
-    )
+    );
 }
 
-export default Home
+export default Home;
