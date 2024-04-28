@@ -6,6 +6,7 @@ const Logout = () => {
 
     const handleLogout = () => {
         // Clear the authentication token from localStorage or sessionStorage
+        console.log("token")
         localStorage.removeItem('token'); // If token is stored in localStorage
         sessionStorage.removeItem('token'); // If token is stored in sessionStorage
         

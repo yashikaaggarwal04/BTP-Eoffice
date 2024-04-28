@@ -36,6 +36,7 @@ function Home() {
                                 </ul>
                             </li>
                         </ul>
+                        <button className="btn btn-outline-secondary me-2" style={{ color: 'white', borderColor: 'white' }}>Profile</button>
                         {/* Logout button */}
                         <button className="btn btn-outline-danger" onClick={handleLogout} style={{ color: 'white', borderColor: 'white' }}>Logout</button>
                     </div>

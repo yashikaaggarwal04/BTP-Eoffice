@@ -14,6 +14,7 @@ const Login = () => {
         try {
             const response = await axios.post('http://localhost:8080/api/v1/login', { email, password });
             const { jwtToken, tokenObject } = response.data;
+            // localStorage.setItem('jwtToken', jwtToken);
             console.log('Token:', jwtToken);
             console.log('User:', tokenObject);
             // Navigate to homepage upon successful login

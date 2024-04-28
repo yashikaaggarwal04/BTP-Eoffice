@@ -1,4 +1,5 @@
 const UserModel = require("../models/UserModel");
+const TenderForm = require('../models/TenderFormModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 module.exports = {
@@ -58,5 +59,15 @@ module.exports = {
             return res.status(500)
                 .json({message:'error', err});
         } 
-    }
+    },
+
+    storeTenderForm: async (req, res) => {
+        try {
+          const form = new TenderForm({ ...req.body, user: req.user._id });
+          await form.save();
+          res.status(201).send('Form data saved successfully');
+        } catch (error) {
+          res.status(500).send('Error saving form data: ' + error.message);
+        }
+      },
 }

@@ -7,16 +7,39 @@ export class TenderForm extends Component {
     this.state = {
       estimatedCost: "",
       earnestMoney: "",
+      turnover:"",
       date: "",
       tenderSubmissionLastDate: "",
       querySubmissionDate: ""
     };
   }
 
+  state = {
+    equipmentName: '',
+    tenderNo: '',
+    piName: '',
+    piEmail: '',
+    departmentName: '',
+    estimatedCost: '',
+    earnestMoney: '',
+    turnover: '',
+    date: '',
+    tenderSubmissionLastDate: '',
+    querySubmissionDate: '',
+    responseReleaseDate: '',
+    bidOpeningDate: '',
+    bidOpeningTime: '',
+    warrantyDuration: '',
+    depositByBidder: '',
+    technicalSpecifications: '',
+    experienceInField: 'NO',
+  };
+
   handleCostChange = (event) => {
     const estimatedCost = event.target.value;
     const earnestMoney = estimatedCost ? (estimatedCost * 0.02).toFixed(2) : "";
-    this.setState({ estimatedCost, earnestMoney });
+    const turnover = estimatedCost ? (estimatedCost * 0.50).toFixed(2) : "";
+    this.setState({ estimatedCost, earnestMoney,turnover });
   };
 
   handleDateChange = (event) => {
@@ -128,6 +151,17 @@ export class TenderForm extends Component {
             />
           </div>
           <div className="mb-3">
+            <label htmlFor="InputEMD" className="form-label">
+              7. Average Annual Turnover – Min. Rs {this.state.turnover} (Min 50% of estimated cost)
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="Turnover"
+              placeholder="Enter EMD"
+            />
+          </div>
+          <div className="mb-3">
             <label htmlFor="InputDate" className="form-label">
               8. Date
             </label>
@@ -167,27 +201,38 @@ export class TenderForm extends Component {
           </div>
           <div className="mb-3">
             <label htmlFor="InputResponseReleaseDate" className="form-label">
-              11. Date of release of response
+              11. Date of release of response to clarification
             </label>
             <input
-              type="text"
+              type="date"
               className="form-control"
               id="InputResponseReleaseDate"
-              placeholder="__/__/____"
+              
             />
           </div>
           <div className="mb-3">
             <label htmlFor="InputBidOpeningDateTime" className="form-label">
-              12. Date and time for the opening of Technical Bid Average annual
-              turnover (Min 50% of estimated value)
+              12. Date for the opening of Technical Bid Average annual
+              turnover
             </label>
             <input
-              type="text"
+              type="date"
               className="form-control"
               id="InputBidOpeningDateTime"
-              placeholder="__/__/____"
             />
           </div>
+          <div className="mb-3">
+            <label htmlFor="InputBidOpeningDateTime" className="form-label">
+              12. Time for the opening of Technical Bid Average annual
+              turnover
+            </label>
+            <input
+              type="time"
+              className="form-control"
+              id="InputBidOpeningDateTime"
+            />
+          </div>
+          
           <div className="mb-3">
             <label htmlFor="InputWarrantyDuration" className="form-label">
               13. Comprehensive onsite Warranty– (in yr)
@@ -201,7 +246,7 @@ export class TenderForm extends Component {
           </div>
           <div className="mb-3">
             <label htmlFor="InputDepositByBidder" className="form-label">
-              14. Deposit by bidder- ___ (10% of the total value of order)
+              14. Deposit by bidder- ___ (% of the total value of order)
             </label>
             <input
               type="text"
@@ -235,10 +280,21 @@ export class TenderForm extends Component {
               <option value="NO">NO</option>
             </select>
           </div>
+          <div className="mb-3">
+            <label htmlFor="InputDepartmentName" className="form-label">
+              5. Quantity -01 No.
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="Quantity"
+              placeholder="Enter Quantity -01 No."
+            />
+          </div>
 
 
           {/* Remaining fields as before, omitted for brevity */}
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-success">
             Submit
           </button>
         </form>
