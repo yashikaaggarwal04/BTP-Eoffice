@@ -7,8 +7,8 @@ function Home() {
     const history = useNavigate();
 
     const handleLogout = () => {
-        localStorage.removeItem('token');
-        sessionStorage.removeItem('token');
+        localStorage.removeItem('usetoken');
+        sessionStorage.removeItem('usetoken');
         history('/login');
     };
 
@@ -36,9 +36,10 @@ function Home() {
                                 </ul>
                             </li>
                         </ul>
-                        <button className="btn btn-outline-secondary me-2" style={{ color: 'white', borderColor: 'white' }}>Profile</button>
+
                         {/* Logout button */}
                         <button className="btn btn-outline-danger" onClick={handleLogout} style={{ color: 'white', borderColor: 'white' }}>Logout</button>
+                        <Link to="/profile" className="dropdown-item" style={{ color: 'white' }}><button className="btn btn-outline-secondary me-2" style={{ color: 'white', borderColor: 'white' }}>Profile</button></Link>
                     </div>
                 </div>
             </nav>

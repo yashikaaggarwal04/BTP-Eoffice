@@ -9,7 +9,7 @@ const Login = () => {
     const [error, setError] = useState('');
     const history = useNavigate();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e, req, res) => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:8080/api/v1/login', { email, password });
@@ -18,9 +18,10 @@ const Login = () => {
             console.log('Token:', jwtToken);
             console.log('User:', tokenObject);
             // Navigate to homepage upon successful login
+            localStorage.setItem("usertoken", response.data.jwtToken);
             history('/home');
         } catch (err) {
-            setError(err.response.data.message);
+            setError(err.response.message);
             alert('Login failed. Please check your credentials and try again.');
         }
     };

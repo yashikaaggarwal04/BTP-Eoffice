@@ -52,9 +52,9 @@ module.exports = {
 
     getUsers : async(req,res)=>{
         try{
-            const users = await UserModel.find({}, {password:0});
+            const users = await UserModel.find({}, { password: 0 }).sort({ createdAt: 1 }).limit(1);
             return res.status(200)
-                .json({data: users});
+                .json(users);
         }catch(err){
             return res.status(500)
                 .json({message:'error', err});
