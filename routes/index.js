@@ -11,7 +11,8 @@ routes.post('/register', userRegisterValidate ,registerUser);
 routes.post('/login', userLoginValidate, loginUser);
 
 routes.get('/users', ensureAuthenticated, getUsers);
-routes.get('/postTenderForm', storeTenderForm );
+
+routes.post('/postTenderForm', ensureAuthenticated, storeTenderForm );
 
 
 module.exports = routes;
