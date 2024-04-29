@@ -193,7 +193,7 @@ function Home() {
                 <a
                   className="nav-link active"
                   aria-current="page"
-                  href="#"
+                  href="/About"
                   style={{ color: "white" }}
                 >
                   About&nbsp; |
@@ -203,7 +203,7 @@ function Home() {
                 <a
                   className="nav-link active"
                   aria-current="page"
-                  href="#"
+                  href="/contact"
                   style={{ color: "white" }}
                 >
                   Contact Us
