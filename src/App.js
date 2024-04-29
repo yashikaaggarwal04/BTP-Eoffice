@@ -8,6 +8,8 @@ import Profile from './component/Profile';
 import About from './component/About';  // Import the About component
 import Contact from './component/contact';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PDF from './component/PDFFile';
+
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
           <Route path="/home/form" element={<Form />} />
           <Route path="/about" element={<About />} />  // Add this line for the About page
           <Route path="/contact" element={<Contact Us />} />
+          <Route path="/home/form/pdf" element={<PDF />} />
         </Routes>
       </Router>
     </div>
