@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./form.css";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 function TenderForm() {
   const [equipmentName, setEquipmentName] = useState("");
@@ -23,7 +24,7 @@ function TenderForm() {
   const [experienceInField, setExperienceInField] = useState("NO");
   const [quantity, setQuantity] = useState("");
   const [error, setError] = useState('');
-
+  const history = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -55,12 +56,35 @@ function TenderForm() {
       }
     });
       console.log('Form Submission Successful', response.data);
+      // history('/home/form');
+      resetFormFields();
       // Optionally, redirect to login page after successful registration
       // window.location.href = '/login';
     } catch (err) {
         console.log('Form Submission Error', err.message);
         setError(err.message);
     }
+  };
+  const resetFormFields = () => {
+    setEquipmentName("");
+    setTenderNo("");
+    setPiName("");
+    setPiEmail("");
+    setDepartmentName("");
+    setEstimatedCost("");
+    setEarnestMoney("");
+    setTurnover("");
+    setDate("");
+    setTenderSubmissionLastDate("");
+    setQuerySubmissionDate("");
+    setResponseReleaseDate("");
+    setBidOpeningDate("");
+    setBidOpeningTime("");
+    setWarrantyDuration("");
+    setDepositByBidder("");
+    setTechnicalSpecifications("");
+    setExperienceInField("NO");
+    setQuantity("");
   };
 
   const handleCostChange = (event) => {
@@ -94,7 +118,18 @@ function TenderForm() {
       {/* <h3 style={{ padding: "10px" }}>
           <center>Tender Generation Form</center>
         </h3> */}
-      <form className="form" >
+      <form className="form" onSubmit={handleSubmit}>
+      <button 
+  type="submit" 
+  className="btn btn-success" 
+  style={{ 
+    
+    display: 'block', // Make the button a block-level element
+    margin: '10px auto', // Apply automatic horizontal margins
+    width: 'fit-content' // This ensures the button width is as wide as its content
+  }}>
+  Click here to generate Tender
+</button>
         <div className="mb-3">
           <label htmlFor="InputEquipmentName" className="form-label">
             1. Name of Equipment
@@ -107,6 +142,7 @@ function TenderForm() {
             placeholder="Enter equipment name"
             value={equipmentName}
             onChange={(e) => setEquipmentName(e.target.value)}
+            required
           />
         </div>
 
@@ -121,6 +157,7 @@ function TenderForm() {
             placeholder="(IIT/SRIC/Dept. code/ Project code/ PI(short)/ 23-24/EQ)"
             value={tenderNo}
             onChange={(e) => setTenderNo(e.target.value)}
+            required
           />
         </div>
         <div className="mb-3">
@@ -134,6 +171,7 @@ function TenderForm() {
             placeholder="Enter PI's name"
             value={piName}
             onChange={(e) => setPiName(e.target.value)}
+            required
           />
         </div>
         <div className="mb-3">
@@ -147,6 +185,7 @@ function TenderForm() {
             placeholder="Enter PI's email"
             value={piEmail}
             onChange={(e) => setPiEmail(e.target.value)}
+            required
           />
         </div>
         <div className="mb-3">
@@ -160,6 +199,7 @@ function TenderForm() {
             placeholder="Enter department name"
             value={departmentName}
             onChange={(e) => setDepartmentName(e.target.value)}
+            required
           />
         </div>
 
@@ -174,6 +214,7 @@ function TenderForm() {
             placeholder="Enter estimated cost"
             value={estimatedCost}
             onChange={handleCostChange}
+            required
           />
         </div>
 
@@ -203,6 +244,7 @@ function TenderForm() {
             placeholder="Enter EMD"
             value={turnover}
             onChange={(e) => setTurnover(e.target.value)}
+            required
           />
         </div>
 
@@ -216,6 +258,7 @@ function TenderForm() {
             id="InputDate"
             value={date}
             onChange={handleDateChange}
+            required
           />
         </div>
 
@@ -256,6 +299,7 @@ function TenderForm() {
             id="InputResponseReleaseDate"
             value={responseReleaseDate}
             onChange={(e) => setResponseReleaseDate(e.target.value)}
+            required
           />
         </div>
         <div className="mb-3">
@@ -268,6 +312,7 @@ function TenderForm() {
             id="InputBidOpeningDateTime"
             value={bidOpeningDate}
             onChange={(e) => setBidOpeningDate(e.target.value)}
+            required
           />
         </div>
         <div className="mb-3">
@@ -280,6 +325,7 @@ function TenderForm() {
             id="InputBidOpeningDateTime"
             value={bidOpeningTime}
             onChange={(e) => setBidOpeningTime(e.target.value)}
+            required
           />
         </div>
 
@@ -294,6 +340,7 @@ function TenderForm() {
             placeholder="Enter warranty duration"
             value={warrantyDuration}
             onChange={(e) => setWarrantyDuration(e.target.value)}
+            required
           />
         </div>
         <div className="mb-3">
@@ -307,6 +354,7 @@ function TenderForm() {
             placeholder="Enter deposit amount"
             value={depositByBidder}
             onChange={(e) => setDepositByBidder(e.target.value)}
+            required
           />
         </div>
         <div className="mb-3">
@@ -320,6 +368,7 @@ function TenderForm() {
             placeholder="Enter technical specifications"
             value={technicalSpecifications}
             onChange={(e) => setTechnicalSpecifications(e.target.value)}
+            required
           ></textarea>
         </div>
         <div className="mb-3">
@@ -332,6 +381,7 @@ function TenderForm() {
             id="InputExperienceInField"
             value={experienceInField}
             onChange={(e) => setExperienceInField(e.target.value)}
+            required
           >
             <option value="">Select</option>
             <option value="YES">YES</option>
@@ -350,11 +400,10 @@ function TenderForm() {
             placeholder="Enter Quantity"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
+            required
           />
         </div>
-        <button type="submit" onClick={handleSubmit} className="btn btn-success">
-          Submit
-        </button>
+        
         
       </form>
       {error && <div className="error-message">{error}</div>}

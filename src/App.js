@@ -8,6 +8,7 @@ import { useState } from 'react';
 import Login from './component/login_2';
 import Register from './component/register';
 import Profile from './component/Profile';
+import PDF from './component/PDFFile';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/home" element={<Home/>}/>
           <Route path="/profile" element={<Profile />} />
           <Route path="/home/form" element={<Form />} />
+          <Route path="/home/form/pdf" element={<PDF />} />
         </Routes>
       </Router>
     </div>
