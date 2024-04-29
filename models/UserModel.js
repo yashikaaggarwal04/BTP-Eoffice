@@ -20,6 +20,7 @@ const tenderFormSchema = new Schema({
     depositByBidder: Number,
     technicalSpecifications: String,
     experienceInField: String,
+    quantity:String,
     createdAt: {
         type: Date,
         default: Date.now

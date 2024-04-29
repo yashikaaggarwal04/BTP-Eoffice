@@ -56,8 +56,8 @@ function TenderForm() {
       }
     });
       console.log('Form Submission Successful', response.data);
-      // history('/home/form');
-      resetFormFields();
+      history('/home/form/pdf');
+      // resetFormFields();
       // Optionally, redirect to login page after successful registration
       // window.location.href = '/login';
     } catch (err) {
@@ -65,27 +65,27 @@ function TenderForm() {
         setError(err.message);
     }
   };
-  const resetFormFields = () => {
-    setEquipmentName("");
-    setTenderNo("");
-    setPiName("");
-    setPiEmail("");
-    setDepartmentName("");
-    setEstimatedCost("");
-    setEarnestMoney("");
-    setTurnover("");
-    setDate("");
-    setTenderSubmissionLastDate("");
-    setQuerySubmissionDate("");
-    setResponseReleaseDate("");
-    setBidOpeningDate("");
-    setBidOpeningTime("");
-    setWarrantyDuration("");
-    setDepositByBidder("");
-    setTechnicalSpecifications("");
-    setExperienceInField("NO");
-    setQuantity("");
-  };
+  // const resetFormFields = () => {
+  //   setEquipmentName("");
+  //   setTenderNo("");
+  //   setPiName("");
+  //   setPiEmail("");
+  //   setDepartmentName("");
+  //   setEstimatedCost("");
+  //   setEarnestMoney("");
+  //   setTurnover("");
+  //   setDate("");
+  //   setTenderSubmissionLastDate("");
+  //   setQuerySubmissionDate("");
+  //   setResponseReleaseDate("");
+  //   setBidOpeningDate("");
+  //   setBidOpeningTime("");
+  //   setWarrantyDuration("");
+  //   setDepositByBidder("");
+  //   setTechnicalSpecifications("");
+  //   setExperienceInField("NO");
+  //   setQuantity("");
+  // };
 
   const handleCostChange = (event) => {
     const cost = event.target.value;

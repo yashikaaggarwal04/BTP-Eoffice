@@ -63,12 +63,12 @@ module.exports = {
 
     storeTenderForm: async (req, res) => {
         try {
-            const { equipmentName, tenderNo, piName, piEmail, departmentName, estimatedCost, earnestMoney, turnover, date, tenderSubmissionLastDate, querySubmissionDate, responseReleaseDate, bidOpeningDate, bidOpeningTime, warrantyDuration, depositByBidder, technicalSpecifications, experienceInField } = req.body;
+            const { equipmentName, tenderNo, piName, piEmail, departmentName, estimatedCost, earnestMoney, turnover, date, tenderSubmissionLastDate, querySubmissionDate, responseReleaseDate, bidOpeningDate, bidOpeningTime, warrantyDuration, depositByBidder, technicalSpecifications, experienceInField, quantity } = req.body;
             const users = await UserModel.find({}, { password: 0 }).sort({ createdAt: 1 }).limit(1).exec();
             if (!users) {
                 return res.status(404).json({ message: 'User not found' });
             }
-            const newSubmission = { equipmentName, tenderNo, piName, piEmail, departmentName, estimatedCost, earnestMoney, turnover, date, tenderSubmissionLastDate, querySubmissionDate, responseReleaseDate, bidOpeningDate, bidOpeningTime, warrantyDuration, depositByBidder, technicalSpecifications, experienceInField };
+            const newSubmission = { equipmentName, tenderNo, piName, piEmail, departmentName, estimatedCost, earnestMoney, turnover, date, tenderSubmissionLastDate, querySubmissionDate, responseReleaseDate, bidOpeningDate, bidOpeningTime, warrantyDuration, depositByBidder, technicalSpecifications, experienceInField,quantity };
             await UserModel.findOneAndUpdate({}, { $push: { formSubmissions: newSubmission } },
                 { new: true });
 

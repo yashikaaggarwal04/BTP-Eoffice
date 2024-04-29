@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import logo from "./iitlogo.png"; // Ensure this path correctly points to your logo file
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const history = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,6 +19,7 @@ const Register = () => {
         { fullName, email, password }
       );
       console.log("Registration Successful:", response.data);
+      history('/home');
       // Optionally, redirect to login page after successful registration
       // window.location.href = '/login';
     } catch (err) {
