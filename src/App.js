@@ -7,6 +7,7 @@ import Profile from './component/Profile';
 import About from './component/About';  // Import the About component
 import Contact from './component/contact';
 import PDF from './component/PDFFile';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
 function App() {

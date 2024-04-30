@@ -7,13 +7,9 @@ import {
   View,
   PDFDownloadLink,
   PDFViewer,
+  Image,
 } from "@react-pdf/renderer";
 import { useState, useEffect } from "react";
-
-
-import { Page, Text,Image, Document, StyleSheet, View, PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
-import { Link } from "react-router-dom";
-import logo from './Logo-black.png'; 
 
 const styles = StyleSheet.create({
   body: {
