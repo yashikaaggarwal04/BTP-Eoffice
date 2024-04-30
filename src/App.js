@@ -1,8 +1,6 @@
 import './App.css';
 import Form from './component/form';
 import Home from './component/Home';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Signup from './component/Signup';
 import Login from './component/login_2';
 import Register from './component/register';
 import Profile from './component/Profile';
